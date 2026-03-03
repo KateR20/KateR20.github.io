@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample GitHub Pages Site</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 0; line-height: 1.5; }
+    header { padding: 32px 20px; border-bottom: 1px solid #eee; }
+    main { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+    nav a { margin-right: 12px; text-decoration: none; }
+    .card { border: 1px solid #eee; border-radius: 12px; padding: 16px; margin-top: 16px; }
+    footer { padding: 24px 20px; border-top: 1px solid #eee; color: #666; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sample GitHub Pages Site</h1>
+    <p>Plain HTML + CSS (no Jekyll, no Hugo)</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Hello 👋</h2>
+      <p>This is a sample static site hosted on GitHub Pages.</p>
+    </div>
+  </main>
+
+  <footer>
+    <small>© 2026 • GitHub Pages demo</small>
+  </footer>
+</body>
+</html>
