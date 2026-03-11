@@ -1,4 +1,617 @@
-assets/img/avatar-kate.png
-assets/img/project-shaggy.jpg
-assets/img/project-github.jpg
-assets/img/project-portfolio.jpg
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web_With_Kate | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: rgba(15, 23, 42, 0.78);
+      --card-light: rgba(255, 255, 255, 0.08);
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --accent: #a855f7;
+      --accent-2: #38bdf8;
+      --accent-3: #22c55e;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 28%),
+        radial-gradient(circle at top right, rgba(168, 85, 247, 0.2), transparent 32%),
+        linear-gradient(180deg, #0b1120 0%, #111827 50%, #0f172a 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(168, 85, 247, 0.3));
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: var(--shadow);
+    }
+
+    .brand span {
+      font-size: 1rem;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1.1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-weight: 600;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 4.5rem 0 2rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-copy {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      inset: auto -60px -60px auto;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(168,85,247,0.35), transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: #dbeafe;
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      line-height: 1.05;
+    }
+
+    .accent {
+      color: #f0abfc;
+    }
+
+    .hero-copy p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.6rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.3rem;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .avatar-wrap {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .mini-stat {
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    section {
+      padding: 1.2rem 0 2rem;
+    }
+
+    .section-heading {
+      margin-bottom: 1.4rem;
+    }
+
+    .section-heading h2 {
+      font-size: 2rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .about-grid,
+    .projects-grid,
+    .contact-grid {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-size: 1.25rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .skill-list,
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+    }
+
+    .tag:nth-child(3n+1) {
+      background: rgba(168, 85, 247, 0.16);
+    }
+
+    .tag:nth-child(3n+2) {
+      background: rgba(56, 189, 248, 0.14);
+    }
+
+    .tag:nth-child(3n+3) {
+      background: rgba(34, 197, 94, 0.12);
+    }
+
+    .project-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .project-image {
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      width: 100%;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .project-body {
+      padding: 1.4rem;
+    }
+
+    .project-body p {
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .link-chip {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+    }
+
+    .contact-list li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 950px) {
+      .hero-grid,
+      .about-grid,
+      .projects-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .card {
+        padding: 1.25rem;
+      }
+
+      h1 {
+        font-size: 2.3rem;
+      }
+
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">
+        <div class="brand-mark">🕸️</div>
+        <span>Web_With_Kate</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Front-End Developer in Training</span>
+          <h1>Hi, I’m <span class="accent">Kate</span>.</h1>
+          <p>
+            I’m a Web Development student at triOS College building clean, responsive websites and growing my skills one project at a time. I love front-end design, accessible layouts, and turning ideas into polished web pages.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View My Projects</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="avatar-wrap">
+            <img src="assets/img/avatar-kate.png" alt="Illustrated portrait of Kate">
+          </div>
+          <div class="mini-grid">
+            <div class="mini-stat">
+              <strong>HTML & CSS</strong>
+              <span>Responsive websites and page layouts</span>
+            </div>
+            <div class="mini-stat">
+              <strong>GitHub</strong>
+              <span>Live projects and version control practice</span>
+            </div>
+            <div class="mini-stat">
+              <strong>UI / UX</strong>
+              <span>Clean, approachable, user-friendly design</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Web_With_Kate</strong>
+              <span>Personal brand in progress</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>About Me</h2>
+          <p>A little about who I am and where I’m headed.</p>
+        </div>
+        <div class="about-grid">
+          <article class="card">
+            <h3>My Story</h3>
+            <p>
+              I’m originally from Wales and have been living in Canada since 2005. I’m currently studying Web Development at triOS College and working toward becoming a front-end developer.
+            </p>
+            <p>
+              I enjoy building websites that feel clean, modern, and easy to use. My goal is to create thoughtful digital experiences while continuing to grow my coding and design skills.
+            </p>
+          </article>
+          <article class="card">
+            <h3>What I’m Building</h3>
+            <p>
+              Right now I’m focused on growing a portfolio that reflects my style and progress as a developer. I’m especially interested in responsive layouts, beginner-friendly JavaScript, GitHub workflows, and turning Figma ideas into real websites.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Creative</span>
+              <span class="tag">Responsive Design</span>
+              <span class="tag">Portfolio Building</span>
+              <span class="tag">Front-End Focus</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <h2>My Skills</h2>
+          <p>Tools and technologies I’m learning and using right now.</p>
+        </div>
+        <div class="card">
+          <div class="skill-list">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Git & GitHub</span>
+            <span class="tag">Responsive Web Design</span>
+            <span class="tag">VS Code</span>
+            <span class="tag">Figma</span>
+            <span class="tag">UI / UX Fundamentals</span>
+            <span class="tag">GitHub Pages</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Projects</h2>
+          <p>A few projects that show what I’ve been learning and building.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="card project-card">
+            <img class="project-image" src="assets/img/project-shaggy.jpg" alt="Screenshot of Shaggy's World project">
+            <div class="project-body">
+              <h3>Shaggy’s World</h3>
+              <p>A dog-themed responsive website featuring a photo gallery, hover effects, and custom styling built with HTML and CSS.</p>
+              <div class="project-links">
+                <a class="link-chip" href="https://kater20.github.io/shaggys-world/" target="_blank">Live Site</a>
+                <a class="link-chip" href="https://github.com/KateR20/shaggys-world" target="_blank">GitHub Repo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <img class="project-image" src="assets/img/project-github.jpg" alt="Screenshot representing GitHub profile and coursework">
+            <div class="project-body">
+              <h3>GitHub Coursework</h3>
+              <p>Hands-on practice with repositories, commits, GitHub Pages, branching, and version control workflows as part of my web development training.</p>
+              <div class="project-links">
+                <a class="link-chip" href="https://github.com/KateR20" target="_blank">My GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <img class="project-image" src="assets/img/project-portfolio.jpg" alt="Graphic placeholder for future portfolio work">
+            <div class="project-body">
+              <h3>More Coming Soon</h3>
+              <p>I’m continuing to add projects as I grow my portfolio, strengthen my front-end skills, and refine my personal brand as Web_With_Kate.</p>
+              <div class="project-links">
+                <span class="link-chip">In Progress</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Contact</h2>
+          <p>Ways to connect with me and follow my work.</p>
+        </div>
+        <div class="contact-grid">
+          <article class="card">
+            <h3>Let’s Connect</h3>
+            <p>
+              I’m currently building my portfolio and growing as a developer. You can view my work and progress through my GitHub profile and project links.
+            </p>
+            <ul class="contact-list">
+              <li><strong>GitHub:</strong> <a href="https://github.com/KateR20" target="_blank">github.com/KateR20</a></li>
+              <li><strong>Portfolio Brand:</strong> Web_With_Kate</li>
+              <li><strong>Location:</strong> Ontario, Canada</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>What I’m Looking For</h3>
+            <p>
+              I’m working toward a future in front-end development and actively building experience through coursework, portfolio projects, and real-world practice with HTML, CSS, GitHub, and web design.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Front-End Developer</span>
+              <span class="tag">Student Portfolio</span>
+              <span class="tag">Responsive Websites</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Kate Redman | Web_With_Kate</p>
+    </div>
+  </footer>
+</body>
+</html>
